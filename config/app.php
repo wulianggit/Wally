@@ -163,6 +163,8 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         // 菜单高亮
         HieuLe\Active\ActiveServiceProvider::class,
+        // 消息提示
+        Laracasts\Flash\FlashServiceProvider::class,
     ],
 
     /*

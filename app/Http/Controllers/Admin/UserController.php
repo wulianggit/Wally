@@ -5,22 +5,33 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\UserRequest;
+use App\Repositories\Eloquent\UserRepository;
 use App\Transform\UsersTransform;
 use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * @var
+     */
+    private $model;
+
+    /**
+     * @var \App\Transform\UsersTransform
+     */
     protected $usersTransform;
 
     /**
-     * 构造函数依赖注入 UsersTransform 类
+     * 构造函数
      * @date   2016-09-24
      * @author Wally
      * @param  UsersTransform $usersTransform [description]
+     * @param  UserRepository $userRepository [description]
      */
-    public function __construct(UsersTransform $usersTransform)
+    public function __construct(UsersTransform $usersTransform, UserRepository $userRepository)
     {
+        $this->model = $userRepository;
         $this->usersTransform = $usersTransform;
     }
 
@@ -53,7 +64,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //
+        $result = $this->model->create($request->all());
     }
 
     /**
