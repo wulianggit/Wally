@@ -22,23 +22,29 @@
             <div class="x_content">
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
-                     <tr>
-                      <th>用户ID</th>
-                      <th>姓名</th>
-                      <th>用户名</th>
-                      <th>角色</th>
-                      <th>添加时间</th>
-                  </tr>
-              </thead>
-              <tbody>
-              </tbody>
-          </table>
-      </div>
-  </div>
+                        <tr>
+                            <th>用户ID</th>
+                            <th>姓名</th>
+                            <th>用户名</th>
+                            <th>角色</th>
+                            <th>邮箱</th>
+                            <th>添加时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 
 @section('js')
 <script src="{{asset('backend/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('backend/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('backend/js/users/usersList.js')}}"></script>
+<script type="text/javascript">
+    usersList.init();
+</script>
 @endsection

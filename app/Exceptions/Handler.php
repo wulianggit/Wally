@@ -48,15 +48,15 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($this->isHttpException($e))
-        {
-            return $this->renderHttpException($e);
-        }
+        // if ($this->isHttpException($e))
+        // {
+        //     return $this->renderHttpException($e);
+        // }
         
-        if (config('app.debug'))
-        {
-            return $this->renderExceptionWithWhoops($e);
-        }
+        // if (config('app.debug'))
+        // {
+        //     return $this->renderExceptionWithWhoops($e);
+        // }
 
         return parent::render($request, $e);
     }

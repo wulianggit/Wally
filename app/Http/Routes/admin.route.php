@@ -4,6 +4,9 @@ $router->get('/', 'HomeController@index');
 $router->resource('home', 'HomeController');
 
 // 用户管理
+$router->group(['prefix' => 'user'], function ($router) {
+	$router->get('ajaxGetUserList', 'UserController@ajaxGetUserList');
+});
 $router->get('/user', 'UserController@index');
 $router->resource('user', 'UserController');
 
