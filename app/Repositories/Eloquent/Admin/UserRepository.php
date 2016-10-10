@@ -1,7 +1,8 @@
 <?php
-namespace App\Repositories\Eloquent;
+namespace App\Repositories\Eloquent\Admin;
 
 use App\User;
+use App\Repositories\Eloquent\Repository;
 
 /**
  * Class UserRepository

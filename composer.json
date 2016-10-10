@@ -10,7 +10,8 @@
         "mews/captcha": "^2.1",
         "filp/whoops": "~1.0",
         "hieu-le/active": "^3.3",
-        "laracasts/flash": "^2.0"
+        "laracasts/flash": "^2.0",
+        "barryvdh/laravel-ide-helper":"dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -45,7 +46,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan ide-helper:generate"
         ]
     },
     "config": {

@@ -10,6 +10,6 @@ $router->group(['prefix' => 'user'], function ($router) {
 $router->get('/user', 'UserController@index');
 $router->resource('user', 'UserController');
 
-// 菜单管理
-$router->get('/menu', 'MenuController@index');
-$router->resource('menu', 'MenuController');
+// 分类管理
+$router->get('/category', 'CategoryController@index');
+$router->resource('category', 'CategoryController');

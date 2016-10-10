@@ -5,7 +5,7 @@
 	<!-- Meta, title, CSS, favicons, etc. -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=480, initial-scale=1.0">
 
 	<title>iWally后台系统</title>
 
@@ -15,9 +15,10 @@
 	<link href="{{asset('backend/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
 	<!-- NProgress -->
 	<link href="{{asset('backend/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
-	@yield('css')
 	<!-- Custom Theme Style -->
+	@yield('css')
 	<link href="{{asset('backend/build/css/custom.min.css')}}" rel="stylesheet">
+	@yield('style')
 </head>
 
 <body class="nav-md">
@@ -26,7 +27,7 @@
 			<div class="col-md-3 left_col">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+						<a href="{{ url('/admin') }}" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
 					</div>
 
 					<div class="clearfix"></div>

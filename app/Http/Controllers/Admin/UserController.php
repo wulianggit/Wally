@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\UserRequest;
-use App\Repositories\Eloquent\UserRepository;
+use App\Repositories\Eloquent\Admin\UserRepository;
 use App\Transform\UsersTransform;
-use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -136,7 +135,7 @@ class UserController extends Controller
     public function ajaxGetUserList () 
     {
         $draw = request('draw', 1);
-        $user = User::all()->toArray();
+        $user = $this->model->all()->toArray();
         return response()->json([
             'draw' => $draw,
             'recordsTotal' => 10,

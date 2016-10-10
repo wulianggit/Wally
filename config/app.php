@@ -159,6 +159,7 @@ return [
         /*
          * 第三方扩展包
          */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         //验证码
         Mews\Captcha\CaptchaServiceProvider::class,
         // 菜单高亮
