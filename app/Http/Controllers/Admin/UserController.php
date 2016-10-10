@@ -64,7 +64,22 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $result = $this->model->create($request->all());
+        $data   = $request->all();
+        $result = $this->model->create([
+            'name'     => $data['name'],
+            'username' => $data['username'],
+            'password' => bcrypt($data['password']),
+            'email'    => $data['email']
+        ]);
+
+        if ($result) {
+            flash('添加用户成功', 'success');
+        } else {
+            // important方法,使消息提示框不会自动关闭
+            flash('添加用户失败', 'error')->important();
+        }
+
+        return redirect('admin/user');
     }
 
     /**

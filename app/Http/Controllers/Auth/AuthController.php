@@ -34,8 +34,6 @@ class AuthController extends Controller
 
     /**
      * Create a new authentication controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -75,10 +73,10 @@ class AuthController extends Controller
 
     /**
      * 重写登录表单验证，加入验证码的验证
-     * @date   2016-09-20
-     * @author Wally
-     * @param  Request    $request [description]
-     * @return [type]              [description]
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @author wuliang
      */
     protected function validateLogin(Request $request)
     {

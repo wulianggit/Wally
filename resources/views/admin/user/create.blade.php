@@ -3,8 +3,6 @@
 @section('content')
 <div class="clearfix"></div>
 
-@include('flash::message')
-
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
@@ -28,6 +26,8 @@
 						<div class="alert">{{$errors->first('name')}}</div>
 						@endif
 					</div>
+
+
 					<div class="item form-group {{$errors->has('username') ? 'bad' : ''}}">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">用户名 <span class="required">*</span>
 						</label>
@@ -38,6 +38,32 @@
 						<div class="alert">{{$errors->first('username')}}</div>
 						@endif
 					</div>
+
+
+                    <div class="item form-group {{$errors->has('password') ? 'bad' : ''}}">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">密码 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="password" id="password" name="password" placeholder="请输入密码" required="required" class="form-control col-md-7 col-xs-12" value="{{old('password')}}">
+                        </div>
+                        @if ($errors->has('password'))
+                            <div class="alert">{{$errors->first('password')}}</div>
+                        @endif
+                    </div>
+
+
+                    <div class="item form-group {{$errors->has('password_confirmation') ? 'bad' : ''}}">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_confirmation">确认密码 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="请确认密码" required="required" class="form-control col-md-7 col-xs-12" value="{{old('password_confirmation')}}">
+                        </div>
+                        @if ($errors->has('password_confirmation'))
+                            <div class="alert">{{$errors->first('password_confirmation')}}</div>
+                        @endif
+                    </div>
+
+
 					<div class="item form-group {{$errors->has('email') ? 'bad' : ''}}">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">用户邮箱<span class="required">*</span>
 						</label>

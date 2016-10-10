@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 
 class UserRequest extends Request
 {
@@ -24,8 +23,9 @@ class UserRequest extends Request
     public function rules()
     {
         $rules = [
-            'name' => 'required|min:4|max:25',
+            'name' => 'required|min:2|max:25',
             'username' => 'required|unique:users,username|min:5|max:50',
+            'password' => 'required|min:6|confirmed',
             'email' => 'required|unique:users,email|email',
         ];
 

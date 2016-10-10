@@ -6,6 +6,10 @@
 
 @section('content')
 <div class="cleaarfix"></div>
+<div style="margin-top: 65px;">
+    @include('flash::message')
+</div>
+
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -41,5 +45,7 @@
 <script src="{{asset('backend/js/users/usersList.js')}}"></script>
 <script type="text/javascript">
     usersList.init();
+    // flash message auto close
+    $('div.alert').not('.alert-important').delay(8000).fadeOut(500);
 </script>
 @endsection

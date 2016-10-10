@@ -32,6 +32,7 @@ abstract class Repository implements RepositoryInterface
     public function __construct (App $app )
     {
         $this->app = $app;
+        $this->makeModel();
     }
 
     /**
