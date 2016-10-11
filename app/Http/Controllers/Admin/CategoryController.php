@@ -2,13 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Eloquent\Admin\CategoryRepository;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
+
+    /**
+     * @var
+     */
+    private $model;
+
+    /**
+     * CategoryController constructor.
+     *
+     * @param CategoryRepository $categoryRepository
+     */
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->model = $categoryRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,19 +33,29 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.list');
+        // 获取顶级分类
+        $topCates = $this->model->findByField('pid', 0, ['id', 'name']);
+        return view('admin.category.list')->with(compact('topCates'));
     }
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $result = $this->model->create($request->all());
+
+        if ($result) {
+            flash('文章分类添加成功!', 'success');
+        } else {
+            flash('文章分类添加失败!', 'error')->important();
+        }
+
+        return redirect('admin/category');
     }
 
     /**

@@ -1,6 +1,6 @@
-var MenuList = function () {
+var Category = function () {
 
-    var menuInit = function () {
+    var categoryInit = function () {
         // Select2
         var select2 = $(".select2_single");
         select2.select2({
@@ -8,11 +8,11 @@ var MenuList = function () {
             allowClear: true
         });
 
-        // nestable
-        $('#nestable_list_3').nestable();
+        // nestable 默认折叠所有子节点
+        $('#nestable_list_3').nestable('collapseAll');
     };
 
     return {
-        init: menuInit
+        init: categoryInit
     };
 }();

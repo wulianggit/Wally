@@ -10,6 +10,11 @@ use App\Repositories\Eloquent\Repository;
  */
 class UserRepository extends Repository
 {
+    /**
+     * 返回用户 Model 模型的名称
+     * @return mixed
+     * @author wuliang
+     */
     public function model ()
     {
         return User::class;

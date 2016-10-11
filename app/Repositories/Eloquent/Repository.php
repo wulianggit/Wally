@@ -100,7 +100,7 @@ abstract class Repository implements RepositoryInterface
      */
     public function findByField ($field, $value, $columns = ['*'])
     {
-        return $this->model->where($field, '=', $value)->get($columns);
+        return $this->model->where($field, $value)->get($columns)->toArray();
     }
 
     /**
