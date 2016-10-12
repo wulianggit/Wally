@@ -8,8 +8,10 @@ var Category = function () {
             allowClear: true
         });
 
-        // nestable 默认折叠所有子节点
-        $('#nestable_list_3').nestable('collapseAll');
+        // nestable
+        $('#categoryList').nestable();
+        // 默认折叠所有子节点
+        $('.dd').nestable('collapseAll');
     };
 
     return {

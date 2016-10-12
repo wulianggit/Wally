@@ -25,7 +25,7 @@
     </div>
     <div class="clearfix"></div>
 
-    @inject('CatePresenter', 'App\Repositories\Presenter\Admin\CategoryPresenter')
+    @inject('catePresenter', 'App\Repositories\Presenter\Admin\CategoryPresenter')
 
     @include('flash::message')
 
@@ -33,6 +33,7 @@
         {{--分类列表 start--}}
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="x_panel">
+
                 <div class="x_title">
                     <h2>分类列表</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -43,6 +44,15 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
+
+                <div class="x_content bs-example-popovers">
+                    <div class="dd" id="categoryList">
+                        <ol class="dd-list">
+                            {!! $catePresenter->handleCategoryList($cateList) !!}
+                        </ol>
+                    </div>
+                </div>
+
             </div>
         </div>
         {{--分类列表 end--}}
@@ -79,7 +89,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">上级分类</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <select class="select2_single form-control" tabindex="-1" name="pid" >
-                                    {!! $CatePresenter->getTopCate($topCates) !!}
+                                    {!! $catePresenter->getTopCate($topCates) !!}
                                 </select>
                             </div>
                         </div>
