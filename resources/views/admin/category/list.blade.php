@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('css')
-    <!-- iCheck -->
+    {{--iCheck--}}
     <link href="{{asset('backend/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
-    <!-- Select2 -->
+    {{--Select2--}}
     <link href="{{asset('backend/vendors/select2/dist/css/select2.min.css')}}" rel="stylesheet">
-    <!-- Switchery -->
+    {{--Switchery--}}
     <link href="{{asset('backend/vendors/switchery/dist/switchery.min.css')}}" rel="stylesheet">
-    <!-- nestable -->
+    {{--nestable--}}
     <link href="{{asset('backend/vendors/jquery-nestable/jquery.nestable.css')}}" rel="stylesheet">
 @endsection
 
@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="x_content">
-                    <form method="post" action="{{ url('/admin/category') }}" class="form-horizontal form-label-left">
+                    <form method="post" action="{{ url('/admin/category') }}" class="form-horizontal form-label-left" id="cateForm">
                         {{ csrf_field() }}
 
                         <div class="form-group {{ $errors->has('name') ? 'parsley-error' : '' }}">
@@ -97,7 +97,7 @@
                         <div class="form-group {{ $errors->has('sort') ? 'parsley-error' : '' }}">
                             <label for="sort" class="control-label col-xs-12 col-sm-3 col-md-3">排序</label>
                             <div class="col-xs-12 col-sm-9 col-md-9">
-                                <input type="number" class="form-control" id="sort" min="0" name="sort" value="{{old('sort',0)}}">
+                                <input type="number" class="form-control" id="sort" min="0" name="sort" placeholder="请输入排序值" value="{{old('sort')}}">
                                 @if ($errors->has('sort'))
                                     <p class="text-danger text-left">
                                         <strong>{{ $errors->first('sort') }}</strong>
@@ -125,11 +125,13 @@
 
 
 @section('js')
-    <!-- Select2 -->
+    {{--Select2--}}
     <script src="{{asset('backend/vendors/select2/dist/js/select2.full.min.js')}}"></script>
-    <!-- nestable -->
+    {{--nestable--}}
     <script src="{{asset('backend/vendors/jquery-nestable/jquery.nestable.js')}}"></script>
-    <!-- menuList -->
+    {{--layer--}}
+    <script src="{{asset('backend/vendors/layer/layer.js')}}"></script>
+    {{--menuList--}}
     <script src="{{asset('backend/js/category/category.js')}}"></script>
     <script type="application/javascript">
         $(document).ready(function() {

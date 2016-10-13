@@ -81,19 +81,27 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoryData = $this->model->getEditCategoryInfo($id);
+        return response()->json($categoryData);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request)
     {
-        //
+        $result = $this->model->updateCategory($request);
+
+        if ($result) {
+            flash('修改成功!', 'success');
+        } else {
+            flash('修改失败!', 'error')->important();
+        }
+
+        return redirect('admin/category');
     }
 
     /**
@@ -104,6 +112,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = $this->model->destoryCategory($id);
+
+        if ($result) {
+           flash('删除成功!', 'success');
+        } else {
+            flash('删除失败!', 'error')->important();
+        }
+
+        return redirect('admin/category');
     }
 }

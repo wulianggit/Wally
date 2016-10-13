@@ -61,6 +61,7 @@ class CategoryRepository extends Repository
         {
             if ($pid == $val['pid']) {
                 $categoryList[$key]['id']   = $val['id'];
+                $categoryList[$key]['pid']  = $val['pid'];
                 $categoryList[$key]['name'] = $val['name'];
                 $categoryList[$key]['sort'] = $val['sort'];
                 $categoryList[$key]['child'] = self::unlimitedForChild($cates, $val['id']);
@@ -68,5 +69,74 @@ class CategoryRepository extends Repository
         }
 
         return $categoryList;
+    }
+
+    /**
+     * 获取修改分类信息
+     *
+     * @param $id
+     *
+     * @return array
+     * @author wuliang
+     */
+    public function getEditCategoryInfo ($id)
+    {
+        $field = ['id', 'pid', 'name', 'sort'];
+        $categoryData = $this->model->find($id, $field)->toArray();
+        if ($categoryData) {
+            $categoryData['status'] = 'success';
+            $categoryData['update'] = url('admin/category/'.$id);
+            return $categoryData;
+        }
+
+        return ['status' => 'error', 'msg' => '加载失败'];
+    }
+
+    /**
+     * 更新分类
+     * @param $request
+     *
+     * @return bool
+     * @author wuliang
+     */
+    public function updateCategory ($request)
+    {
+        $category = $this->model->find($request->id);
+
+        if ($category)
+        {
+            $result = $category->update($request->all());
+            if ($result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        abort('不存在该分类!');
+    }
+
+    /**
+     * 删除分类
+     * @param $id
+     *
+     * @return bool
+     * @author wuliang
+     */
+    public function destoryCategory ($id)
+    {
+        $category = $this->model->find($id);
+
+        if ($category)
+        {
+            $result = $category->delete();
+            if ($result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        abort('不存在该分类!');
     }
 }

@@ -26,11 +26,21 @@ class CategoryRequest extends Request
      */
     public function rules()
     {
-        return [
-            'name' => 'required|max:20',
+        $rules = [
             'pid'  => 'numeric',
             'sort' => 'numeric'
         ];
+        
+        // 执行修改操作时,名称不需要判断唯一性
+        $id = request('id');
+        if ($id) {
+            // unique:table,column,except,idColumn
+            $rules['name'] = 'required|max:20|unique:categories,name,'.$id;
+        } else {
+            $rules['name'] = 'required|max:20|unique:categories,name';
+        }
+
+        return $rules;
     }
 
     /**
@@ -44,7 +54,8 @@ class CategoryRequest extends Request
         return [
             'required' => ':attribute 不能为空',
             'max'      => ':attribute 不能超过:max个字符',
-            'numeric'  => ':attribute 只能为数字'
+            'numeric'  => ':attribute 只能为数字',
+            'unique'   => ':attribute 不能重复',
         ];
     }
 

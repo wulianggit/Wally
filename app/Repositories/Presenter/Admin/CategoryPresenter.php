@@ -62,8 +62,15 @@ class CategoryPresenter
     {
         $item = "<li class='dd-item dd3-item' data-id='{$category['id']}'>
                     <div class='dd-handle dd3-handle'></div>
-                    <div class='dd3-content'>{$category['name']}</div>";
+                    <div class='dd3-content'>{$category['name']}";
 
+        // 拼接操作按钮
+        $topCategory = false;
+        if ($category['pid'] == 0)
+            $topCategory = true;
+        $item .= $this->getOpeatorButton($category['id'], $topCategory);
+        $item .= "</div>";
+        // 拼接子级分类
         if ($category['child']) {
             $item .= $this->handleChildCategory($category['child']);
         }
@@ -93,5 +100,46 @@ class CategoryPresenter
         $childItem .= "</ol>";
 
         return $childItem;
+    }
+
+    /**
+     * 分类操作按钮 [增 删 改]
+     * @param      $categoryId
+     * @param bool $topCategory
+     *
+     * @return string
+     * @author wuliang
+     */
+    private function getOpeatorButton ($categoryId, $topCategory = false)
+    {
+        $operatorButon = "<div class='pull-right action-buttons'>";
+
+        // 添加子级分类 只有顶级分类才可以添加
+        $addUrl = url("admin/category");
+        if ($topCategory) {
+            $operatorButon .= "<a href='javascript:;' data-pid='{$categoryId}' data-href='{$addUrl}' 
+                 class='btn-xs createCate' data-toggle='tooltips' data-original-title='添加子分类' 
+                 data-placement='top'><i class='fa fa-plus'></i></a>";
+        }
+        // 编辑分类
+        $editUrl = url("admin/category/{$categoryId}/edit");
+        $operatorButon .= "<a href='javascript:;' data-href='{$editUrl}' class='btn-xs editCate'
+            data-toggle='tooltips' data-original-title='修改分类' data-placement='top'>
+            <i class='fa fa-pencil'></i></a>";
+
+        // 删除分类
+        $deleteUrl = url("admin/category", [$categoryId]);
+        $token     = csrf_token();
+        $operatorButon .= "<a href='javacsript:;' data-id='{$categoryId}' class='btn-xs destoryCate'
+            data-toggle='tooltips' data-original-title='删除分类' data-placement='top'>    
+            <i class='fa fa-trash'></i>
+            <form action='{$deleteUrl}' method='post' name='delete_cate_{$categoryId}' style='display: none'>
+                <input type='hidden' name='_method' value='DELETE'>
+                <input type='hidden' name='_token' value='{$token}'>
+            </form></a>";
+
+        $operatorButon .= "</div>";
+
+        return $operatorButon;
     }
 }
