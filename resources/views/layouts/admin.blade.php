@@ -9,13 +9,13 @@
 
 	<title>iWally后台系统</title>
 
-	<!-- Bootstrap -->
+	{{--Bootstrap--}}
 	<link href="{{asset('backend/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
-	<!-- Font Awesome -->
+	{{--Font Awesome --}}
 	<link href="{{asset('backend/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-	<!-- NProgress -->
+	{{--NProgress--}}
 	<link href="{{asset('backend/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
-	<!-- Custom Theme Style -->
+	{{--Custom Theme Style--}}
 	@yield('css')
 	<link href="{{asset('backend/build/css/custom.min.css')}}" rel="stylesheet">
 	@yield('style')
@@ -32,7 +32,7 @@
 
 					<div class="clearfix"></div>
 
-					<!-- menu profile quick info -->
+					{{--menu profile quick info--}}
 					<div class="profile">
 						<div class="profile_pic">
 							<img src="{{asset('backend/images/img.jpg')}}" alt="..." class="img-circle profile_img">
@@ -42,15 +42,15 @@
 							<h2>John Doe</h2>
 						</div>
 					</div>
-					<!-- /menu profile quick info -->
+					{{--/menu profile quick info--}}
 
 					<br />
 
-					<!-- sidebar menu -->
+					{{--sidebar menu --}}
 					@include('layouts.sidebar')
-					<!-- /sidebar menu -->
+					{{--/sidebar menu--}}
 
-					<!-- /menu footer buttons -->
+					{{--menu footer buttons--}}
 					<div class="sidebar-footer hidden-small">
 						<a data-toggle="tooltip" data-placement="top" title="Settings">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -65,11 +65,12 @@
 							<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
 						</a>
 					</div>
-					<!-- /menu footer buttons -->
+					{{--/menu footer buttons--}}
+
 				</div>
 			</div>
 
-			<!-- top navigation -->
+			{{--top navigation--}}
 			<div class="top_nav">
 				<div class="nav_menu">
 					<nav>
@@ -85,35 +86,35 @@
 					</nav>
 				</div>
 			</div>
-			<!-- /top navigation -->
+			{{--/top navigation--}}
 
-			<!-- page content -->
+			{{--page content--}}
 			<div class="right_col" role="main">
 				@yield('content')
 			</div>
-			<!-- /page content -->
+			{{--/page content--}}
 
-			<!-- footer content -->
+			{{--footer content--}}
 			<footer>
 				<div class="pull-right">
 					Gentelella - Bootstrap Admin Template by <a href="#">Colorlib</a>
 				</div>
 				<div class="clearfix"></div>
 			</footer>
-			<!-- /footer content -->
+			{{--/footer content--}}
 		</div>
 	</div>
 
-	<!-- jQuery -->
+	{{--jQuery--}}
 	<script src="{{asset('backend/vendors/jquery/dist/jquery.min.js')}}"></script>
-	<!-- Bootstrap -->
+	{{--Bootstrap--}}
 	<script src="{{asset('backend/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-	<!-- FastClick -->
+	{{--FastClick--}}
 	<script src="{{asset('backend/vendors/fastclick/lib/fastclick.js')}}"></script>
-	<!-- NProgress -->
+	{{--NProgress--}}
 	<script src="{{asset('backend/vendors/nprogress/nprogress.js')}}"></script>
 	@yield('js')
-	<!-- Custom Theme Scripts -->
+	{{--Custom Theme Scripts--}}
 	<script src="{{asset('backend/build/js/custom.min.js')}}"></script>
 </body>
 </html>

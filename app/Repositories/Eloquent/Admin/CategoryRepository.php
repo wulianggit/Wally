@@ -79,7 +79,7 @@ class CategoryRepository extends Repository
      * @return array
      * @author wuliang
      */
-    public function getEditCategoryInfo ($id)
+    public function editCategory ($id)
     {
         $field = ['id', 'pid', 'name', 'sort'];
         $categoryData = $this->model->find($id, $field)->toArray();
@@ -129,7 +129,7 @@ class CategoryRepository extends Repository
 
         if ($category)
         {
-            $result = $category->delete();
+            $result = $this->model->where('id',$id)->update(['status'=>0]);
             if ($result) {
                 return true;
             } else {

@@ -74,14 +74,8 @@
 						<div class="alert">{{$errors->first('email')}}</div>
 						@endif
 					</div>
-					
-					<div class="ln_solid"></div>
-					<div class="form-group">
-						<div class="col-md-6 col-md-offset-3">
-							<button type="reset" class="btn btn-primary">取消</button>
-							<button id="send" type="submit" class="btn btn-success">提交</button>
-						</div>
-					</div>
+
+					@include('admin.common.globalButton')
 
 				</form>
 			</div>

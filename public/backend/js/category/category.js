@@ -15,6 +15,7 @@ var Category = function () {
         
         // 添加子分类按钮事件
         $('.createCate').on('click', function () {
+            $('.cate_title').html('添加分类');
             // 移除在修改分类时添加的ID的隐藏域
             $('input[name="id"]').remove();
             // 移除在修改分类时添加的method隐藏域
@@ -30,6 +31,7 @@ var Category = function () {
 
         // 修改分类按钮事件
         $('.editCate').on('click', function () {
+            $('.cate_title').html('修改分类');
             var _editUrl = $(this).attr('data-href');
             $.ajax({
                 url  : _editUrl,

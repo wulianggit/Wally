@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Repositories\Eloquent\Admin\CategoryRepository;
-use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
 
@@ -81,7 +80,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categoryData = $this->model->getEditCategoryInfo($id);
+        $categoryData = $this->model->editCategory($id);
         return response()->json($categoryData);
     }
 

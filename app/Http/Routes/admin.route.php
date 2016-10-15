@@ -13,3 +13,7 @@ $router->resource('user', 'UserController');
 // 分类管理
 $router->get('/category', 'CategoryController@index');
 $router->resource('category', 'CategoryController');
+
+// 标签管理
+$router->get('/label', 'LabelController@index');
+$router->resource('label', 'LabelController');
