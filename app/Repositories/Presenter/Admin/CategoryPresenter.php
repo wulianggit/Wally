@@ -6,21 +6,32 @@ namespace app\Repositories\Presenter\Admin;
 class CategoryPresenter
 {
     /**
-     * 处理顶级分类
+     * 处理文章分类
      *
-     * @param array $cates
+     * @param array $cates [分类数据]
+     * @param bool  $isTop [是否仅为顶级分类]
      *
      * @return string
      * @author wuliang
      */
-    public function getTopCate ($cates)
+    public function getTopCate ($cates, $isTop = true)
     {
-        $option = "<option value='0'>顶级分类</option>";
+        if ($isTop) {
+            $option = "<option value='0'>顶级分类</option>";
+        } else {
+            $option = "<option value='0'>请选择文章分类</option>";
+        }
 
         if (!empty($cates)) {
-            foreach ($cates as $cate)
+            foreach ($cates as $key => $cate)
             {
                 $option .= "<option value='{$cate['id']}'>{$cate['name']}</option>";
+                if (isset($cate['child']) && !$isTop) {
+                    foreach ($cate['child'] as $child)
+                    {
+                        $option .= "<option value='{$child['id']}'>&nbsp;&nbsp;&nbsp;&nbsp;{$child['name']}</option>";
+                    }
+                }
             }
         }
 

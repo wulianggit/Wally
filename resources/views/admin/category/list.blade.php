@@ -126,10 +126,13 @@
     {{--layer--}}
     <script src="{{asset('backend/vendors/layer/layer.js')}}"></script>
     {{--categoryList--}}
-    <script src="{{asset('backend/js/category/category.js')}}"></script>
+    <script src="{{asset('backend/js/backend/category.js')}}"></script>
+    <script src="{{ asset('backend/js/common/common.js') }}"></script>
     <script type="application/javascript">
         $(document).ready(function() {
             Category.init();
+            Common.initSelect2("select2_single","请选择上级分类");
+            Common.initNestable("categoryList", true);
             // flash message auto close
             $('div.alert').not('.alert-important').delay(8000).fadeOut(500);
         });

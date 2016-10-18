@@ -5,6 +5,28 @@ namespace App\Repositories\Presenter\Admin;
 class LabelPresenter
 {
     /**
+     * 处理标签下拉选项
+     * @param $labels
+     *
+     * @return string
+     * @author wuliang
+     */
+    public function labelSelectOption ($labels)
+    {
+        $option = "<option value='0'>请选择文章标签</option>";
+
+        if (!empty($labels)) {
+            foreach ($labels as $key => $label)
+            {
+                $option .= "<option value='{$label['id']}'>{$label['name']}</option>";
+            }
+        }
+
+        return $option;
+    }
+
+
+    /**
      * 处理标签列表
      * @param $labels
      *

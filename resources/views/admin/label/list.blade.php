@@ -101,12 +101,14 @@
     {{--layer--}}
     <script src="{{asset('backend/vendors/layer/layer.js')}}"></script>
     {{--categoryList--}}
-    <script src="{{asset('backend/js/label/label.js')}}"></script>
+    <script src="{{asset('backend/js/backend/label.js')}}"></script>
+    <script src="{{asset('backend/js/common/common.js')}}"></script>
     <script type="application/javascript">
         $(document).ready(function() {
             Label.init();
+            Common.initNestable('labelList');
             // flash message auto close
-            $('div.alert').not('.alert-important').delay(8000).fadeOut(500);
+            $('div.alert').not('.alert-important').delay(5000).fadeOut(500);
         });
     </script>
 @endsection

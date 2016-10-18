@@ -17,3 +17,7 @@ $router->resource('category', 'CategoryController');
 // 标签管理
 $router->get('/label', 'LabelController@index');
 $router->resource('label', 'LabelController');
+
+// 文章管理
+$router->get('/article', 'ArticleController@index');
+$router->resource('article', 'ArticleController');
