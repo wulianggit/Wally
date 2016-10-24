@@ -80,7 +80,7 @@
 
 						<ul class="nav navbar-nav navbar-right">
 							<li class="">
-								<a href="javascript:;" class="user-profile">Logout</a>
+								<a href="{{ url('/logout') }}" class="user-profile">Logout</a>
 							</li>
 						</ul>
 					</nav>

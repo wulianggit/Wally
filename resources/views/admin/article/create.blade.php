@@ -6,7 +6,7 @@
     {{--Select2--}}
     <link href="{{asset('backend/vendors/select2/dist/css/select2.min.css')}}" rel="stylesheet">
     {{--上传图片--}}
-    <link href="{{asset('backend/vendors/bootstrap-fileinput/bootstrap-fileinput.css')}}" rel="stylesheet">
+    <link href="{{asset('backend/css/fileinput.min.css')}}" rel="stylesheet">
 @endsection
 
 @section('style')
@@ -96,43 +96,21 @@
                             @endif
                         </div>
 
-
-                        <div class="item form-group {{$errors->has('cover') ? 'bad' : ''}}">
-                            <label class="col-md-12 col-sm-12 col-xs-12" for="cover">
+                        <div class="item form-group">
+                            <label class="col-md-12 col-sm-12 col-xs-12">
                                 {{ trans('label.article.cover') }}
                             </label>
                             <div class="col-md-6 col-sm-8 col-xs-12">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="{{asset('backend/images/logo.jpg')}}"
-                                             alt="{{trans('label.article.coverTitle')}}" />
-                                    </div>
-                                    <div class="fileinput-preview fileinput-exists thumbnail"
-                                         style="max-width: 200px; max-height: 150px;">
-                                    </div>
-                                    <div>
-                                      <span class="btn btn-info btn-file">
-                                          <span class="fileinput-new">{{trans('label.article.coverSelect')}}</span>
-                                          <span class="fileinput-exists">{{trans('label.article.coverChange')}}</span>
-                                          <input type="file" name="cover"> </span>
-                                        <a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">
-                                            {{trans('label.article.coverRemove')}}
-                                        </a>
-                                    </div>
-                                </div>
+                                <input class="file" type="file" id="cover" name="cover">
                             </div>
-                            @if ($errors->has('cover'))
-                                <div class="alert">{{$errors->first('cover')}}</div>
-                            @endif
                         </div>
 
-
                         <div class="item form-group {{$errors->has('introduction') ? 'bad' : ''}}">
-                            <label class="col-md-12 col-sm-12 col-xs-12" for="introduction">
+                            <label class="col-md-12 col-sm-12 col-xs-12">
                                 {{ trans('label.article.introduce') }}
                             </label>
                             <div class="col-md-8 col-sm-8 col-xs-12">
-                                <textarea name="introduction" id="introduction" class="form-control" rows="5"
+                                <textarea name="introduction" class="form-control" rows="5"
                                           required="required" placeholder="{{ trans('label.article.placeIntro') }}"
                                 >{{ old('introduction') }}</textarea>
                             </div>
@@ -174,7 +152,8 @@
     {{--markdown编辑器--}}
     <script src="{{ asset('backend/vendors/editor/js/editormd.min.js') }}"></script>
     {{--上传图片--}}
-    <script src="{{asset('backend/vendors/bootstrap-fileinput/bootstrap-fileinput.js')}}"></script>
+    <script src="{{ asset('backend/js/backend/fileinput.min.js') }}"></script>
+    <script src="{{ asset('backend/js/backend/fileinput_locale_zh.js') }}"></script>
     {{--各插件初始化--}}
     <script src="{{ asset('backend/js/backend/article.js') }}"></script>
     <script src="{{ asset('backend/js/common/common.js') }}"></script>
@@ -184,5 +163,18 @@
         Article.editor('editor', path, upload);
         Common.initSelect2('select2_cate', '请选择文章分类');
         Common.initSelect2('select2_label', '请选择文章标签');
+        $("#cover").fileinput({
+            msgInvalidFileType : "images",
+            allowedFileExtensions : ['jpg', 'png','gif'],
+            uploadUrl : "#",
+            dropZoneTitle : '{{trans('label.article.dropZoneTitle')}}',
+            browseLabel : "{{trans('label.article.coverSelect')}}",
+            browseIcon: "", // 图标
+            uploadAsync: false,  //同步
+            showCaption: false,//是否显示标题
+            showUpload: false, //是否显示上传按钮
+            showRemove : false, //显示移除按钮
+            browseClass: "btn btn-primary btn-block", //按钮样式
+        })
     </script>
 @endsection

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -75,7 +76,23 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('img'))
+        {
+            $image = $request->file('img');
+            $extension = $image->getClientOriginalExtension();
+            $realPath  = $image->getRealPath();
+            $filename  = date('Y-m-d').uniqid('-').'.'.$extension;
+            if (!in_array($extension, ['jpg','png','gif'])) {
+                dd('图片格式不允许');
+            }
+            // 保存图片
+            $result = Storage::disk('upload')->put($filename, file_get_contents($realPath));
+            if (!$result) {
+                dd('图片上传失败');
+            }
+
+            dd($result);
+        }
     }
 
     /**

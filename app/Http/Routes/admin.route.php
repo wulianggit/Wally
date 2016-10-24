@@ -19,5 +19,8 @@ $router->get('/label', 'LabelController@index');
 $router->resource('label', 'LabelController');
 
 // 文章管理
+$router->group(['prefix' => 'upload'], function ($router) {
+    $router->post('ajaxUploadImage', 'UploadController@uploadImage');
+});
 $router->get('/article', 'ArticleController@index');
 $router->resource('article', 'ArticleController');

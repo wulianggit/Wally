@@ -11,3 +11,16 @@
 .error-p{
     margin: 10px 0px 0px 0px;
 }
+
+#cropContainerHeaderButton {
+    color: #FFF;
+    width: 200px;
+    display: block;
+    text-align: center;
+    font-weight: 400;
+    background: #2CE987;
+    text-transform: uppercase;
+    border-radius: 2px;
+    font-size: 20px;
+    margin-top: 5px;
+}

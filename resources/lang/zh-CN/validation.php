@@ -83,6 +83,7 @@ return [
     'unique'               => ':attribute 已经存在。',
     'uploaded'             => ':attribute 上传失败。',
     'url'                  => ':attribute 格式不正确。',
+    'captcha'              => ':attribute 不正确',
 
     /*
     |--------------------------------------------------------------------------

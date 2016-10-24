@@ -1,5 +1,9 @@
 <?php
 return [
+    'button'  => [
+        'submit' => '确定',
+        'reset'  => '取消'
+    ],
     'article' => [
         'add'  => '发布文章',
         'list' => '文章列表',
@@ -11,9 +15,8 @@ return [
         'label' => '标签',
         'cover' => '封面',
         'coverTitle' => '请选择文章封面',
-        'coverRemove' => '删除',
+        'dropZoneTitle' => '拖拽图片到这里',
         'coverSelect' => '选择图片',
-        'coverChange' => '重新选择',
         'introduce' => '简介',
         'placeIntro' => '请输入文章标签',
         'content' => '内容'
