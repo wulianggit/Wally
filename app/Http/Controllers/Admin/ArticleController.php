@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Repositories\Eloquent\Admin\ArticleRepository;
 use App\Repositories\Eloquent\Admin\CategoryRepository;
 use App\Repositories\Eloquent\Admin\LabelRepository;
+use App\Transform\ArticleTransform;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -29,21 +30,29 @@ class ArticleController extends Controller
     private $labelModel;
 
     /**
+     * @var \App\Transform\ArticleTransform
+     */
+    private $transform;
+
+    /**
      * ArticleController constructor.
      *
      * @param CategoryRepository $categoryRepository
      * @param ArticleRepository $articleRepository
      * @param LabelRepository $labelRepository
+     * @param ArticleTransform $articleTransform
      */
     public function __construct(
         CategoryRepository $categoryRepository,
         ArticleRepository $articleRepository,
-        LabelRepository $labelRepository
+        LabelRepository $labelRepository,
+        ArticleTransform $articleTransform
     )
     {
         $this->articleModel = $articleRepository;
         $this->cateModel    = $categoryRepository;
         $this->labelModel   = $labelRepository;
+        $this->transform    = $articleTransform;
     }
 
     /**
@@ -53,7 +62,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.article.index');
     }
 
     /**
@@ -76,23 +85,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('img'))
-        {
-            $image = $request->file('img');
-            $extension = $image->getClientOriginalExtension();
-            $realPath  = $image->getRealPath();
-            $filename  = date('Y-m-d').uniqid('-').'.'.$extension;
-            if (!in_array($extension, ['jpg','png','gif'])) {
-                dd('图片格式不允许');
-            }
-            // 保存图片
-            $result = Storage::disk('upload')->put($filename, file_get_contents($realPath));
-            if (!$result) {
-                dd('图片上传失败');
-            }
-
-            dd($result);
+        $result = $this->articleModel->createArticle($request);
+        if ($result['status'] == 0) {
+            flash($result['msg'], 'success');
+        } else {
+            flash($result['msg'], 'error')->important();
         }
+
+        return redirect('admin/article');
     }
 
     /**
@@ -138,5 +138,22 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * 获取文章列表
+     * @return mixed
+     * @author wuliang
+     */
+    public function ajaxGetArticleList ()
+    {
+        $draw = request('draw', 1);
+        $article = $this->articleModel->getArticleList();
+        return response()->json([
+            'draw' => $draw,
+            'recordsTotal' => 10,
+            'recordsFiltered' => 10,
+            'data' => $this->transform->transformCollection($article),
+        ]);
     }
 }

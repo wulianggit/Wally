@@ -53,32 +53,32 @@
                         </div>
 
 
-                        <div class="item form-group {{$errors->has('keywords') ? 'bad' : ''}}">
+                        <div class="item form-group {{$errors->has('keyword') ? 'bad' : ''}}">
                             <label class="col-md-12 col-sm-12 col-xs-12" for="keywords">
                                 {{ trans('label.article.keyword') }}
                             </label>
                             <div class="col-md-6 col-sm-8 col-xs-12">
                                 <input type="text" class="form-control col-md-6 col-sm-8 col-xs-12" id="keywords"
-                                       name="keywords" placeholder="{{ trans('label.article.placeKeyword') }}"
-                                       required="required" value="{{old('keywords')}}">
+                                       name="keyword" placeholder="{{ trans('label.article.placeKeyword') }}"
+                                       required="required" value="{{old('keyword')}}">
                             </div>
-                            @if ($errors->has('keywords'))
-                                <div class="alert">{{$errors->first('keywords')}}</div>
+                            @if ($errors->has('keyword'))
+                                <div class="alert">{{$errors->first('keyword')}}</div>
                             @endif
                         </div>
 
 
-                        <div class="item form-group {{$errors->has('category') ? 'bad' : ''}}">
+                        <div class="item form-group {{$errors->has('cate_id') ? 'bad' : ''}}">
                             <label class="col-md-12 col-sm-12 col-xs-12" for="category">
                                 {{ trans('label.article.category') }}
                             </label>
                             <div class="col-md-6 col-sm-8 col-xs-12">
-                                <select name="category" class="select2_cate form-control" tabindex="-1" >
+                                <select name="cate_id" class="select2_cate form-control" tabindex="-1" >
                                     {!! $catePresenter->getTopCate($categoryList, false) !!}
                                 </select>
                             </div>
-                            @if ($errors->has('category'))
-                                <div class="alert">{{$errors->first('category')}}</div>
+                            @if ($errors->has('cate_id'))
+                                <div class="alert">{{$errors->first('cate_id')}}</div>
                             @endif
                         </div>
 
@@ -105,17 +105,17 @@
                             </div>
                         </div>
 
-                        <div class="item form-group {{$errors->has('introduction') ? 'bad' : ''}}">
+                        <div class="item form-group {{$errors->has('introduce') ? 'bad' : ''}}">
                             <label class="col-md-12 col-sm-12 col-xs-12">
                                 {{ trans('label.article.introduce') }}
                             </label>
                             <div class="col-md-8 col-sm-8 col-xs-12">
-                                <textarea name="introduction" class="form-control" rows="5"
+                                <textarea name="introduce" class="form-control" rows="5"
                                           required="required" placeholder="{{ trans('label.article.placeIntro') }}"
-                                >{{ old('introduction') }}</textarea>
+                                >{{ old('introduce') }}</textarea>
                             </div>
-                            @if ($errors->has('introduction'))
-                                <div class="alert">{{$errors->first('introduction')}}</div>
+                            @if ($errors->has('introduce'))
+                                <div class="alert">{{$errors->first('introduce')}}</div>
                             @endif
                         </div>
 
@@ -175,6 +175,6 @@
             showUpload: false, //是否显示上传按钮
             showRemove : false, //显示移除按钮
             browseClass: "btn btn-primary btn-block", //按钮样式
-        })
+        });
     </script>
 @endsection
