@@ -37,7 +37,6 @@ class ArticleRepository extends Repository
     {
         $article = new Article();
         $data = $request->all();
-
         // 如果上传了封面图片,先处理图片上传
         if ($request->hasFile('cover'))
         {
@@ -54,7 +53,7 @@ class ArticleRepository extends Repository
         {
             if ($data['label'])
             {
-                $article->belongsToManyTag()->sync([$data['label']]);
+                $article->belongsToManyTag()->sync($data['label']);
             }
             return ['status'=>0,'msg'=>'文章添加成功'];
         }

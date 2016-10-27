@@ -1,6 +1,7 @@
 var usersList = function (){
 	var usersListInit = function () {
 		$('#datatable-responsive').DataTable({
+			"searching" : true,
 			"processing": true,//DataTables载入数据时，是否显示‘进度’提示
 			"ajax" : {'url' : '/admin/user/ajaxGetUserList'},
 			"columns" : [

@@ -9,8 +9,8 @@ use App\Transform\ArticleTransform;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\ArticleRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -80,10 +80,10 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ArticleRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         $result = $this->articleModel->createArticle($request);
         if ($result['status'] == 0) {

@@ -87,7 +87,7 @@
                                 {{ trans('label.article.label') }}
                             </label>
                             <div class="col-md-6 col-sm-8 col-xs-12">
-                                <select name="label" class="select2_label form-control" tabindex="-1" >
+                                <select name="label[]" multiple="multiple" class="select2_label form-control" tabindex="-1" >
                                     {!! $labelPresenter->labelSelectOption($labelList) !!}
                                 </select>
                             </div>
