@@ -30,7 +30,7 @@ class ArticleRepository extends Repository
      * 添加文章
      * @param $request
      *
-     * @return array
+     * @return boolean
      * @author wuliang
      */
     public function createArticle ($request)
@@ -40,11 +40,11 @@ class ArticleRepository extends Repository
         // 如果上传了封面图片,先处理图片上传
         if ($request->hasFile('cover'))
         {
-            $image = $this->uploadImages($request->file('cover'));
-            if ($image['status'] != 0) {
-                return ['status'=>0,'msg'=>$image['msg']];
+            $imagePath = $this->uploadImages($request->file('cover'));
+            if (!$imagePath) {
+                return false;
             }
-            $data['img_path'] = $image['path'];
+            $data['img_path'] = $imagePath;
         }
         $data['content_html'] = $data['editor-html-code'];
         $data['content_mark'] = $data['editor-markdown-doc'];
@@ -55,16 +55,16 @@ class ArticleRepository extends Repository
             {
                 $article->belongsToManyTag()->sync($data['label']);
             }
-            return ['status'=>0,'msg'=>'文章添加成功'];
+            return true;
         }
-        return ['status'=>1,'msg'=>'文章添加失败'];
+        return false;
     }
 
     /**
      * 上传图片处理
      * @param $image
      *
-     * @return array
+     * @return string
      * @author wuliang
      */
     public function uploadImages ($image)
@@ -76,9 +76,26 @@ class ArticleRepository extends Repository
         $result = Storage::disk('upload')->put($fileName, file_get_contents($realPath));
 
         if (!$result) {
-            return ['status'=>1, '上传失败'];
+            return '';
         }
 
-        return ['status'=>0, 'path'=>$fileName];
+        return $fileName;
+    }
+
+    /**
+     * 编辑器中图片上传
+     * @param $request
+     *
+     * @return string
+     * @author wuliang
+     */
+    public function upload ($request)
+    {
+        if ($request->hasFile('editormd-image-file')) {
+            $path = $this->uploadImages($request->file('editormd-image-file'));
+            $path = $path ? config('admin.globals.upload.savePath').'/'.$path : '';
+        }
+
+        return $path;
     }
 }

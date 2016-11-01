@@ -86,10 +86,10 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $result = $this->articleModel->createArticle($request);
-        if ($result['status'] == 0) {
-            flash($result['msg'], 'success');
+        if ($result) {
+            flash('添加文章成功', 'success');
         } else {
-            flash($result['msg'], 'error')->important();
+            flash('添加文章失败', 'error')->important();
         }
 
         return redirect('admin/article');
@@ -155,5 +155,23 @@ class ArticleController extends Controller
             'recordsFiltered' => 10,
             'data' => $this->transform->transformCollection($article),
         ]);
+    }
+
+    /**
+     * markdown 编辑器中的图片上传
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return mixed
+     * @author wuliang
+     */
+    public function upload (Request $request)
+    {
+        $path = $this->articleModel->upload($request);
+        if ($path) {
+            $result = ['success' => 1, 'message' => '上传成功', 'url' => $path];
+        } else {
+            $result = ['success' => 0, 'message' => '上传失败'];
+        }
+        return response()->json($result);
     }
 }

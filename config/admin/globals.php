@@ -5,6 +5,7 @@ return [
 
 	// 图片上传
     'upload' => [
-        'extension' => ['jpg', 'png', 'gif']
+        'extension' => ['jpg', 'png', 'gif'],
+        'savePath'  => asset('/upload'),
     ],
 ];

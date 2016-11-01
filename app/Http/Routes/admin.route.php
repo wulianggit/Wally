@@ -21,6 +21,8 @@ $router->resource('label', 'LabelController');
 // 文章管理
 $router->group(['prefix' => 'article'], function ($router) {
     $router->get('ajaxGetArticleList', 'ArticleController@ajaxGetArticleList');
+    // markdown 编辑器中图片上传处理
+    $router->post('upload', 'ArticleController@upload');
 });
 $router->get('/article', 'ArticleController@index');
 $router->resource('article', 'ArticleController');
