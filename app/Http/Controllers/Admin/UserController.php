@@ -72,10 +72,10 @@ class UserController extends Controller
         ]);
 
         if ($result) {
-            flash('添加用户成功', 'success');
+            flash(trans('alert.user.create_success'), 'success');
         } else {
             // important方法,使消息提示框不会自动关闭
-            flash('添加用户失败', 'error')->important();
+            flash(trans('alert.user.create_error'), 'error')->important();
         }
 
         return redirect('admin/user');

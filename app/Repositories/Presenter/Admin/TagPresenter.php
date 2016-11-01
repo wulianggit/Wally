@@ -2,7 +2,7 @@
 namespace App\Repositories\Presenter\Admin;
 
 
-class LabelPresenter
+class TagPresenter
 {
     /**
      * 处理标签下拉选项
@@ -11,7 +11,7 @@ class LabelPresenter
      * @return string
      * @author wuliang
      */
-    public function labelSelectOption ($labels)
+    public function tagSelectOption ($labels)
     {
         $option = "<option value='0'>请选择文章标签</option>";
 
@@ -28,23 +28,23 @@ class LabelPresenter
 
     /**
      * 处理标签列表
-     * @param $labels
+     * @param $tags
      *
      * @return string
      * @author wuliang
      */
-    public function getLabelList($labels)
+    public function getTagList($tags)
     {
-        if ($labels) {
+        if ($tags) {
             $item = '';
-            foreach ($labels as $key => $label)
+            foreach ($tags as $key => $tag)
             {
-                $item .= "<li class='dd-item dd3-item' data-id='{$label['id']}'>
+                $item .= "<li class='dd-item dd3-item' data-id='{$tag['id']}'>
                     <div class='dd-handle dd3-handle'></div>
-                    <div class='dd3-content'>{$label['name']}";
+                    <div class='dd3-content'>{$tag['name']}";
 
                 // 拼接操作按钮
-                $item .= $this->getOpeatorButton($label['id']);
+                $item .= $this->getOpeatorButton($tag['id']);
                 $item .= "</div></li>";
             }
             return $item;
@@ -56,28 +56,28 @@ class LabelPresenter
 
     /**
      * 标签操作按钮 [增 删 改]
-     * @param     $labelId
+     * @param     $tagId
      *
      * @return string
      * @author wuliang
      */
-    private function getOpeatorButton ($labelId)
+    private function getOpeatorButton ($tagId)
     {
         $operatorButon = "<div class='pull-right action-buttons'>";
 
         // 编辑标签
-        $editUrl = url("admin/label/{$labelId}/edit");
-        $operatorButon .= "<a href='javascript:;' data-href='{$editUrl}' class='btn-xs editLabel'
-            data-toggle='tooltips' data-original-title='修改标签' data-placement='top'>
+        $editUrl = url("admin/tag/{$tagId}/edit");
+        $operatorButon .= "<a href='javascript:;' data-href='{$editUrl}' class='btn-xs editTag'
+            data-toggle='tooltips' data-original-title='".trans('curd.update')."' data-placement='top'>
             <i class='fa fa-pencil'></i></a>";
 
         // 删除标签
-        $deleteUrl = url("admin/label", [$labelId]);
+        $deleteUrl = url("admin/tag", [$tagId]);
         $token     = csrf_token();
-        $operatorButon .= "<a href='javacsript:;' data-id='{$labelId}' class='btn-xs destoryLabel'
-            data-toggle='tooltips' data-original-title='删除标签' data-placement='top'>    
+        $operatorButon .= "<a href='javacsript:;' data-id='{$tagId}' class='btn-xs destoryTag'
+            data-toggle='tooltips' data-original-title='".trans('curd.delete')."' data-placement='top'>    
             <i class='fa fa-trash'></i>
-            <form action='{$deleteUrl}' method='post' name='delete_label_{$labelId}' style='display: none'>
+            <form action='{$deleteUrl}' method='post' name='delete_tag_{$tagId}' style='display: none'>
                 <input type='hidden' name='_method' value='DELETE'>
                 <input type='hidden' name='_token' value='{$token}'>
             </form></a>";

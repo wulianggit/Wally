@@ -53,9 +53,9 @@ class CategoryController extends Controller
         $result = $this->model->create($request->all());
 
         if ($result) {
-            flash('文章分类添加成功!', 'success');
+            flash(trans('alert.category.create_success'), 'success');
         } else {
-            flash('文章分类添加失败!', 'error')->important();
+            flash(trans('alert.category.create_error'), 'error')->important();
         }
 
         return redirect('admin/category');
@@ -95,9 +95,9 @@ class CategoryController extends Controller
         $result = $this->model->updateCategory($request);
 
         if ($result) {
-            flash('修改成功!', 'success');
+            flash(trans('alert.category.update_success'), 'success');
         } else {
-            flash('修改失败!', 'error')->important();
+            flash(trans('alert.category.update_error'), 'error')->important();
         }
 
         return redirect('admin/category');
@@ -114,9 +114,9 @@ class CategoryController extends Controller
         $result = $this->model->destoryCategory($id);
 
         if ($result) {
-           flash('删除成功!', 'success');
+           flash(trans('alert.category.delete_success'), 'success');
         } else {
-            flash('删除失败!', 'error')->important();
+            flash(trans('alert.category.delete_error'), 'error')->important();
         }
 
         return redirect('admin/category');

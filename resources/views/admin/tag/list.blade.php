@@ -23,7 +23,7 @@
     </div>
     <div class="clearfix"></div>
 
-    @inject('labelPresenter', 'App\Repositories\Presenter\Admin\LabelPresenter')
+    @inject('tagPresenter', 'App\Repositories\Presenter\Admin\TagPresenter')
 
     @include('flash::message')
 
@@ -44,9 +44,9 @@
                 </div>
 
                 <div class="x_content bs-example-popovers">
-                    <div class="dd" id="labelList">
+                    <div class="dd" id="tagList">
                         <ol class="dd-list">
-                            {!! $labelPresenter->getLabelList($labelList) !!}
+                            {!! $tagPresenter->getTagList($tagList) !!}
                         </ol>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="x_content">
-                    <form method="post" action="{{ url('/admin/label') }}" class="form-horizontal form-label-left" id="labelForm">
+                    <form method="post" action="{{ url('/admin/tag') }}" class="form-horizontal form-label-left" id="tagForm">
                         {{ csrf_field() }}
 
                         <div class="form-group {{ $errors->has('name') ? 'parsley-error' : '' }}">
@@ -101,12 +101,12 @@
     {{--layer--}}
     <script src="{{asset('backend/vendors/layer/layer.js')}}"></script>
     {{--categoryList--}}
-    <script src="{{asset('backend/js/backend/label.js')}}"></script>
+    <script src="{{asset('backend/js/backend/tag.js')}}"></script>
     <script src="{{asset('backend/js/common/common.js')}}"></script>
     <script type="application/javascript">
         $(document).ready(function() {
-            Label.init();
-            Common.initNestable('labelList');
+            Tag.init();
+            Common.initNestable('tagList');
             // flash message auto close
             $('div.alert').not('.alert-important').delay(5000).fadeOut(500);
         });

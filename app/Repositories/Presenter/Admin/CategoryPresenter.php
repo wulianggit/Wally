@@ -135,14 +135,14 @@ class CategoryPresenter
         // 编辑分类
         $editUrl = url("admin/category/{$categoryId}/edit");
         $operatorButon .= "<a href='javascript:;' data-href='{$editUrl}' class='btn-xs editCate'
-            data-toggle='tooltips' data-original-title='修改分类' data-placement='top'>
+            data-toggle='tooltips' data-original-title='".trans('curd.update')."' data-placement='top'>
             <i class='fa fa-pencil'></i></a>";
 
         // 删除分类
         $deleteUrl = url("admin/category", [$categoryId]);
         $token     = csrf_token();
         $operatorButon .= "<a href='javacsript:;' data-id='{$categoryId}' class='btn-xs destoryCate'
-            data-toggle='tooltips' data-original-title='删除分类' data-placement='top'>    
+            data-toggle='tooltips' data-original-title='".trans('curd.delete')."' data-placement='top'>    
             <i class='fa fa-trash'></i>
             <form action='{$deleteUrl}' method='post' name='delete_cate_{$categoryId}' style='display: none'>
                 <input type='hidden' name='_method' value='DELETE'>

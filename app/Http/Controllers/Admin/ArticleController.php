@@ -87,9 +87,9 @@ class ArticleController extends Controller
     {
         $result = $this->articleModel->createArticle($request);
         if ($result) {
-            flash('添加文章成功', 'success');
+            flash(trans('alert.article.create_success'), 'success');
         } else {
-            flash('添加文章失败', 'error')->important();
+            flash(trans('alert.article.create_error'), 'error')->important();
         }
 
         return redirect('admin/article');
@@ -168,9 +168,9 @@ class ArticleController extends Controller
     {
         $path = $this->articleModel->upload($request);
         if ($path) {
-            $result = ['success' => 1, 'message' => '上传成功', 'url' => $path];
+            $result = ['success' => 1, 'message' => trans('alert.article.upload_success'), 'url' => $path];
         } else {
-            $result = ['success' => 0, 'message' => '上传失败'];
+            $result = ['success' => 0, 'message' => trans('alert.article.upload_error')];
         }
         return response()->json($result);
     }

@@ -1,9 +1,5 @@
 <?php
 return [
-    'button'  => [
-        'submit' => '确定',
-        'reset'  => '取消'
-    ],
     'article' => [
         'add'  => '发布文章',
         'list' => '文章列表',

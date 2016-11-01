@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\LabelRequest;
+use App\Http\Requests\TagRequest;
 use App\Http\Controllers\Controller;
-use App\Repositories\Eloquent\Admin\LabelRepository;
+use App\Repositories\Eloquent\Admin\TagRepository;
 
 /**
- * Class LabelController
+ * Class TagController
  *
  * @package App\Http\Controllers\Admin
  */
-class LabelController extends Controller
+class TagController extends Controller
 {
     /**
      * @var
@@ -19,13 +19,13 @@ class LabelController extends Controller
     private $model;
 
     /**
-     * LabelController constructor.
+     * TagController constructor.
      *
-     * @param LabelRepository $labelRepository
+     * @param TagRepository $tagRepository
      */
-    public function __construct(LabelRepository $labelRepository)
+    public function __construct(TagRepository $tagRepository)
     {
-        $this->model = $labelRepository;
+        $this->model = $tagRepository;
     }
 
     /**
@@ -35,28 +35,28 @@ class LabelController extends Controller
      */
     public function index()
     {
-        $labelList = $this->model->getLabelList();
-        return view('admin.label.list')->with(compact('labelList'));
+        $tagList = $this->model->getTagList();
+        return view('admin.tag.list')->with(compact('tagList'));
     }
     
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\LabelRequest  $request
+     * @param  \App\Http\Requests\TagRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LabelRequest $request)
+    public function store(TagRequest $request)
     {
         $result = $this->model->create($request->all());
 
         if ($result) {
-            flash('标签添加成功!', 'success');
+            flash(trans('alert.tag.create_success'), 'success');
         } else {
-            false('标签添加失败', 'error')->important();
+            false(trans('alert.tag.create_error'), 'error')->important();
         }
 
-        return redirect('admin/label');
+        return redirect('admin/tag');
     }
 
     /**
@@ -85,20 +85,20 @@ class LabelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\LabelRequest  $request
+     * @param  \App\Http\Requests\TagRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(LabelRequest $request)
+    public function update(TagRequest $request)
     {
-        $result = $this->model->updateLabel($request);
+        $result = $this->model->updateTag($request);
 
         if ($result) {
-            flash('标签修改成功!', 'success');
+            flash(trans('alert.tag.update_success'), 'success');
         } else {
-            flash('标签修改失败!', 'error')->important();
+            flash('alert.tag.update_error', 'error')->important();
         }
 
-        return redirect('admin/label');
+        return redirect('admin/tag');
     }
 
     /**
@@ -109,14 +109,14 @@ class LabelController extends Controller
      */
     public function destroy($id)
     {
-        $result = $this->model->destoryLabel($id);
+        $result = $this->model->destoryTag($id);
 
         if ($result) {
-            flash('标签删除成功!', 'success');
+            flash(trans('alert.tag.delete_success'), 'success');
         } else {
-            flash('标签删除失败!', 'error')->important();
+            flash(trans('alert.tag.delete_error'), 'error')->important();
         }
 
-        return redirect('admin/label');
+        return redirect('admin/tag');
     }
 }

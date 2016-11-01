@@ -15,8 +15,8 @@ $router->get('/category', 'CategoryController@index');
 $router->resource('category', 'CategoryController');
 
 // 标签管理
-$router->get('/label', 'LabelController@index');
-$router->resource('label', 'LabelController');
+$router->get('/tag', 'TagController@index');
+$router->resource('tag', 'TagController');
 
 // 文章管理
 $router->group(['prefix' => 'article'], function ($router) {

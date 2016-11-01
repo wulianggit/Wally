@@ -89,7 +89,7 @@ class CategoryRepository extends Repository
             return $categoryData;
         }
 
-        return ['status' => 'error', 'msg' => '加载失败'];
+        return ['status' => 'error', 'msg' => trans('alert.loading.error')];
     }
 
     /**
@@ -113,7 +113,7 @@ class CategoryRepository extends Repository
             }
         }
 
-        abort('不存在该分类!');
+        abort(trans('alert.category.not_exists'));
     }
 
     /**
@@ -137,6 +137,6 @@ class CategoryRepository extends Repository
             }
         }
 
-        abort('不存在该分类!');
+        abort(trans('alert.category.not_exists'));
     }
 }

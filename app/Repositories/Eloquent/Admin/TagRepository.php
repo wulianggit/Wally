@@ -3,10 +3,10 @@
 namespace App\Repositories\Eloquent\Admin;
 
 
-use App\Models\Label;
+use App\Models\Tag;
 use App\Repositories\Eloquent\Repository;
 
-class LabelRepository extends Repository
+class TagRepository extends Repository
 {
     /**
      * 返回标签model类名称
@@ -15,7 +15,7 @@ class LabelRepository extends Repository
      */
     public function model()
     {
-        return Label::class;
+        return Tag::class;
     }
 
     /**
@@ -23,7 +23,7 @@ class LabelRepository extends Repository
      * @return mixed
      * @author wuliang
      */
-    public function getLabelList ()
+    public function getTagList ()
     {
         return $this->model->where('status', 1)->get(['id', 'name'])->toArray();
     }
@@ -35,19 +35,19 @@ class LabelRepository extends Repository
      * @return array
      * @author wuliang
      */
-    public function editLabel ($id)
+    public function editTag ($id)
     {
         $label = $this->model->find($id, ['id', 'name']);
 
         if ($label)
         {
             $label['status'] = 'success';
-            $label['update'] = url('admin/label/'.$id);
+            $label['update'] = url('admin/tag/'.$id);
 
             return $label;
         }
 
-        return ['status' => 'error', 'msg' => '标签不存在'];
+        return ['status' => 'error', 'msg' => trans('alert.loading.error')];
     }
 
     /**
@@ -57,7 +57,7 @@ class LabelRepository extends Repository
      * @return bool
      * @author wuliang
      */
-    public function updateLabel ($request)
+    public function updateTag ($request)
     {
         $label = $this->model->find($request->id);
 
@@ -71,7 +71,7 @@ class LabelRepository extends Repository
             }
         }
 
-        abort('修改标签不存在');
+        abort(trans('alert.tag.not_exists'));
     }
 
     /**
@@ -81,7 +81,7 @@ class LabelRepository extends Repository
      * @return bool
      * @author wuliang
      */
-    public function destoryLabel ($id)
+    public function destoryTag ($id)
     {
         $label = $this->model->find($id);
 
@@ -95,6 +95,6 @@ class LabelRepository extends Repository
             }
         }
 
-        abort('删除标签不存在!');
+        abort(trans('alert.tag.not_exists'));
     }
 }
