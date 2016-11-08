@@ -93,7 +93,7 @@ class ArticleRepository extends Repository
     {
         if ($request->hasFile('editormd-image-file')) {
             $path = $this->uploadImages($request->file('editormd-image-file'));
-            $path = $path ? config('admin.globals.upload.savePath').'/'.$path : '';
+            $path = $path ? asset('/uploads').'/'.$path : '';
         }
 
         return $path;

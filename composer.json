@@ -11,7 +11,8 @@
         "filp/whoops": "~1.0",
         "hieu-le/active": "^3.3",
         "laracasts/flash": "^2.0",
-        "barryvdh/laravel-ide-helper":"dev-master"
+        "barryvdh/laravel-ide-helper":"^2.2",
+        "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

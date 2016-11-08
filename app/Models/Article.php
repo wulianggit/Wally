@@ -4,6 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Article
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $belongsToManyTag
+ * @property-read \App\Models\Category $category
+ * @mixin \Eloquent
+ */
 class Article extends Model
 {
     protected $table = 'articles';

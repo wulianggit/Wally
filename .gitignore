@@ -1,2 +1,7 @@
 .env
 .idea
+.gitignore
+.phpstorm.meta.php
+.gitattributes
+vendor
+_ide_helper.php

@@ -4,8 +4,7 @@ return [
 	'loginField' => 'username',
 
 	// 图片上传
-    'upload' => [
+    'uploads' => [
         'extension' => ['jpg', 'png', 'gif'],
-        'savePath'  => asset('/upload'),
     ],
 ];

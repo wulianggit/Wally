@@ -166,6 +166,8 @@ return [
         HieuLe\Active\ActiveServiceProvider::class,
         // 消息提示
         Laracasts\Flash\FlashServiceProvider::class,
+        // 权限管理
+        Zizaco\Entrust\EntrustServiceProvider::class,
     ],
 
     /*
@@ -215,6 +217,8 @@ return [
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         // 菜单高亮
         'Active' => HieuLe\Active\Facades\Active::class,
+        // 权限管理
+        'Entrust' => Zizaco\Entrust\EntrustFacade::class,
     ],
 
 ];
