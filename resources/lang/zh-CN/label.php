@@ -17,4 +17,10 @@ return [
         'placeIntro' => '请输入文章标签',
         'content' => '内容'
     ],
+
+    'permission' => [
+        'name' => '权限名称',
+        'display_name' => '显示名称',
+        'description' => '描述',
+    ],
 ];

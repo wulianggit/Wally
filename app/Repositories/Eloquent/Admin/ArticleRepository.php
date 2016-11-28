@@ -5,7 +5,7 @@ namespace App\Repositories\Eloquent\Admin;
 
 use App\Models\Article;
 use App\Repositories\Eloquent\Repository;
-use Illuminate\Support\Facades\Storage;
+use Storage;
 
 class ArticleRepository extends Repository
 {

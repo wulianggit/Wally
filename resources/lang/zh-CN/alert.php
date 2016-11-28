@@ -46,4 +46,13 @@ return [
         'delete_error'   => '用户删除失败',
         'not_exists'     => '不存在该用户',
     ],
+
+    'permission' => [
+        'create_success' => '权限添加成功',
+        'create_error'   => '权限添加失败',
+        'update_success' => '权限更新成功',
+        'update_error'   => '权限更新失败',
+        'delete_success' => '权限删除成功',
+        'delete_error'   => '权限删除失败',
+    ],
 ];

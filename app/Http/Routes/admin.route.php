@@ -10,6 +10,18 @@ $router->group(['prefix' => 'user'], function ($router) {
 $router->get('/user', 'UserController@index');
 $router->resource('user', 'UserController');
 
+// 角色管理
+$router->get('/role', 'RoleController@index');
+$router->resource('role', 'RoleController');
+
+// 权限管理
+$router->group(['prefix' => 'permission'], function ($router) {
+    $router->get('ajaxGetPermissionList', 'PermissionController@ajaxGetPermissionList');
+});
+$router->get('/permission', 'PermissionController@index');
+$router->resource('permission', 'PermissionController');
+
+
 // 分类管理
 $router->get('/category', 'CategoryController@index');
 $router->resource('category', 'CategoryController');
