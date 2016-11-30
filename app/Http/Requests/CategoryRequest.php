@@ -68,9 +68,9 @@ class CategoryRequest extends Request
     public function attributes()
     {
         return [
-            'name' => '分类名称',
-            'pid'  => '上级分类ID',
-            'sort' => '排序值'
+            'name' => trans('label.category.name'),
+            'pid'  => trans('label.category.parentCate'),
+            'sort' => trans('label.category.sort')
         ];
     }
 }

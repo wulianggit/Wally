@@ -53,10 +53,10 @@ class ArticleRequest extends Request
     public function attributes()
     {
         return [
-            'title'     => '文章标题',
-            'keyword'   => '关键字',
-            'cate_id'   => '分类',
-            'introduce' => '文章简介',
+            'title'     => trans('label.article.title'),
+            'keyword'   => trans('label.article.keyword'),
+            'cate_id'   => trans('label.article.category'),
+            'introduce' => trans('label.article.introduce'),
         ];
     }
 }

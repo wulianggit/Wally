@@ -11,6 +11,9 @@ $router->get('/user', 'UserController@index');
 $router->resource('user', 'UserController');
 
 // 角色管理
+$router->group(['prefix' => 'role'], function ($router) {
+    $router->get('ajaxGetRoleList', 'RoleController@ajaxGetRoleList');
+});
 $router->get('/role', 'RoleController@index');
 $router->resource('role', 'RoleController');
 

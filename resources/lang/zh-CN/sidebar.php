@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'category' => [
+        'manager' => '分类管理',
+        'list'    => '分类列表',
+        'create'  => '添加分类',
+    ],
+
     'user' => [
         'manager' => '用户管理',
         'list'    => '用户列表',

@@ -20,7 +20,7 @@
 
     <div class="page-title">
         <div class="title_left">
-            <h3>分类管理</h3>
+            <h3>{{ trans('sidebar.category.manager') }}</h3>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -35,7 +35,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                    <h2>分类列表</h2>
+                    <h2>{{ trans('sidebar.category.list') }}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -61,7 +61,7 @@
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2 class="cate_title">添加分类</h2>
+                    <h2 class="cate_title">{{ trans('sidebar.category.create') }}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -74,9 +74,9 @@
                         {{ csrf_field() }}
 
                         <div class="form-group {{ $errors->has('name') ? 'parsley-error' : '' }}">
-                            <label for="name" class="control-label col-xs-12 col-sm-3 col-md-3">分类名称</label>
+                            <label for="name" class="control-label col-xs-12 col-sm-3 col-md-3">{{ trans('label.category.name') }}</label>
                             <div class="col-xs-12 col-sm-9 col-md-9">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="请输入分类名称" value="{{old('name')}}">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="{{ trans('label.category.placeName') }}" value="{{old('name')}}">
                                 @if ($errors->has('name'))
                                     <p class="text-danger text-left error-p">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">上级分类</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ trans('label.category.parentCate') }}</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <select class="select2_single form-control" tabindex="-1" name="pid" >
                                     {!! $catePresenter->getTopCate($topCates) !!}
@@ -95,9 +95,9 @@
                         </div>
 
                         <div class="form-group {{ $errors->has('sort') ? 'parsley-error' : '' }}">
-                            <label for="sort" class="control-label col-xs-12 col-sm-3 col-md-3">排序</label>
+                            <label for="sort" class="control-label col-xs-12 col-sm-3 col-md-3">{{ trans('label.category.sort') }}</label>
                             <div class="col-xs-12 col-sm-9 col-md-9">
-                                <input type="number" class="form-control" id="sort" min="0" name="sort" placeholder="请输入排序值" value="{{old('sort')}}">
+                                <input type="number" class="form-control" id="sort" min="0" name="sort" placeholder="{{ trans('label.category.placeSort') }}" value="{{old('sort')}}">
                                 @if ($errors->has('sort'))
                                     <p class="text-danger text-left">
                                         <strong>{{ $errors->first('sort') }}</strong>

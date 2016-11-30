@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class PermissionRequest extends Request
+class RoleRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,20 +27,20 @@ class PermissionRequest extends Request
 
         $rule = [
             'display_name' => 'required',
-            'description'  => 'required',
+            'description'  => 'required'
         ];
 
         if ($id) {
-            $rule['name'] = 'required|unique:permissions,name,'.$id;
+            $rule['name'] = 'required|unique:roles,name,'.$id;
         } else {
-            $rule['name'] = 'required|unique:permissions,name';
+            $rule['name'] = 'required|unique:roles,name';
         }
 
         return $rule;
     }
 
     /**
-     * 添加|更新 权限验证错误提示信息
+     * 角色表单验证提示信息
      * @return array
      * @author wuliang
      */
@@ -48,21 +48,21 @@ class PermissionRequest extends Request
     {
         return [
             'required' => ':attribute 不能为空!',
-            'unique'   => ':attribute 不能重复!',
+            'unique'   => ':attribute 不能重复!'
         ];
     }
 
     /**
-     * 属性字段对应的中文名称
+     * 字段名称中文映射
      * @return array
      * @author wuliang
      */
     public function attributes()
     {
         return [
-            'name'         => trans('label.permission.name'),
-            'display_name' => trans('label.permission.display_name'),
-            'description'  => trans('label.permission.description')
+            'name'         => trans('label.role.name'),
+            'display_name' => trans('label.role.display_name'),
+            'description'  => trans('label.role.description')
         ];
     }
 }

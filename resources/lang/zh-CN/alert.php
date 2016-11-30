@@ -55,4 +55,13 @@ return [
         'delete_success' => '权限删除成功',
         'delete_error'   => '权限删除失败',
     ],
+
+    'role' => [
+        'create_success' => '角色添加成功',
+        'create_error'   => '角色添加失败',
+        'update_success' => '角色更新成功',
+        'update_error'   => '角色更新失败',
+        'delete_success' => '角色删除成功',
+        'delete_error'   => '角色删除失败',
+    ],
 ];

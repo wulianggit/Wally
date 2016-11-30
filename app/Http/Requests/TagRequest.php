@@ -50,7 +50,7 @@ class TagRequest extends Request
     public function attributes()
     {
         return [
-            'name' => '标签名称'
+            'name' => trans('label.tag.name')
         ];
     }
 }
