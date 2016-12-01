@@ -97,7 +97,7 @@
                         <div class="form-group {{ $errors->has('sort') ? 'parsley-error' : '' }}">
                             <label for="sort" class="control-label col-xs-12 col-sm-3 col-md-3">{{ trans('label.category.sort') }}</label>
                             <div class="col-xs-12 col-sm-9 col-md-9">
-                                <input type="number" class="form-control" id="sort" min="0" name="sort" placeholder="{{ trans('label.category.placeSort') }}" value="{{old('sort')}}">
+                                <input type="number" class="form-control" id="sort" min="0" name="sort" placeholder="{{ trans() }}" value="{{old('sort')}}">
                                 @if ($errors->has('sort'))
                                     <p class="text-danger text-left">
                                         <strong>{{ $errors->first('sort') }}</strong>

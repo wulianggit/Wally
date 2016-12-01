@@ -66,4 +66,25 @@ class RoleRepository extends Repository
             'data'  => $role,
         ];
     }
+
+    /**
+     * 创建角色
+     * @param $request
+     *
+     * @return bool
+     * @author wuliang
+     */
+    public function store ($request)
+    {
+        $role = new Role();
+        if ($role->fill($request->all())->save())
+        {
+            if ($request->permission) {
+                $role->permission()->sync($request->permission);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

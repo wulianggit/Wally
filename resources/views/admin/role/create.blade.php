@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('css')
+    <link href="{{asset('backend/css/access.css')}}" rel="stylesheet">
+@endsection
 @section('content')
     <div class="clearfix"></div>
 
@@ -17,9 +19,9 @@
                         {{csrf_field()}}
 
                         <div class="item form-group {{$errors->has('name') ? 'bad' : ''}}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{trans('label.role.name')}}： <span class="required">*</span>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="name">{{trans('label.role.name')}}： <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
                                 <input id="name" class="form-control col-md-7 col-xs-12" name="name" placeholder="{{trans('label.role.name')}}" required="required" type="text" value="{{old('name')}}">
                             </div>
                             @if ($errors->has('name'))
@@ -29,10 +31,10 @@
 
 
                         <div class="item form-group {{$errors->has('display_name') ? 'bad' : ''}}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="display_name">{{trans('label.role.display_name')}}: <span class="required">*</span>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="display_name">{{trans('label.role.display_name')}}: <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="display_name" name="display_name" placeholder="{{trans('label.role.display_name')}}" required="required" class="form-control col-md-7 col-xs-12" value="{{old('username')}}">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="text" id="display_name" name="display_name" placeholder="{{trans('label.role.display_name')}}" required="required" class="form-control col-md-7 col-xs-12" value="{{old('display_name')}}">
                             </div>
                             @if ($errors->has('display_name'))
                                 <div class="alert">{{$errors->first('display_name')}}</div>
@@ -41,14 +43,39 @@
 
 
                         <div class="item form-group {{$errors->has('description') ? 'bad' : ''}}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">{{trans('label.role.description')}}: <span class="required">*</span>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description">{{trans('label.role.description')}}: <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="description" name="description" placeholder="{{trans('label.role.description')}}" required="required" class="form-control col-md-7 col-xs-12" value="{{old('password')}}">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="text" id="description" name="description" placeholder="{{trans('label.role.description')}}" required="required" class="form-control col-md-7 col-xs-12" value="{{old('description')}}">
                             </div>
                             @if ($errors->has('description'))
                                 <div class="alert">{{$errors->first('description')}}</div>
                             @endif
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="description">{{ trans('label.role.setAccess') }}: <span class="required">*</span>
+                            </label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <div id="wrap">
+                                    @foreach($permissions as $key => $permission)
+                                        <div class="app">
+                                            <p>
+                                                <strong>{{ trans('label.model.'.$key) }}</strong>
+                                                <input type="checkbox" level="1" value="0">
+                                            </p>
+                                            <dl>
+                                                @foreach($permission as $val)
+                                                    <dt>
+                                                        <strong>{{ $val['displayName'] }}</strong>
+                                                        <input type="checkbox" name="permission[]" value="{{ $val['id'] }}">
+                                                    </dt>
+                                                @endforeach
+                                            </dl>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
 
                         @include('admin.common.globalButton')
@@ -61,4 +88,12 @@
 @endsection
 
 @section('js')
+    <script>
+        $(function(){
+            $('input[level=1]').change(function () {
+                var inputs = $(this).parents('.app').find('input');
+                $(this).prop('checked') ? inputs.prop('checked', true) : inputs.prop('checked',false);
+            });
+        });
+    </script>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Eloquent\Admin\PermissionRepository;
 use App\Repositories\Eloquent\Admin\RoleRepository;
 use Illuminate\Http\Request;
 
@@ -16,13 +17,20 @@ class RoleController extends Controller
     private $model;
 
     /**
+     * @var \app\Repositories\Eloquent\Admin\PermissionRepository
+     */
+    private $permission;
+
+    /**
      * RoleController constructor.
      *
-     * @param $model
+     * @param RoleRepository $model
+     * @param PermissionRepository $permission
      */
-    public function __construct(RoleRepository $model)
+    public function __construct(RoleRepository $model, PermissionRepository $permission)
     {
-        $this->model = $model;
+        $this->model      = $model;
+        $this->permission = $permission;
     }
 
     /**
@@ -42,7 +50,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role.create');
+        $permissions = $this->permission->groupPermissionByModel();
+        return view('admin.role.create')->with(compact('permissions'));
     }
 
     /**
@@ -53,7 +62,7 @@ class RoleController extends Controller
      */
     public function store(Requests\RoleRequest $request)
     {
-        $result = $this->model->create($request->all());
+        $result = $this->model->store($request);
         if ($result) {
             flash(trans('alert.role.create_success'), 'success');
         } else {

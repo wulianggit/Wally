@@ -18,4 +18,13 @@ class Role extends EntrustRole
     {
         $this->attributes['name'] = strtolower($name);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @author wuliang
+     */
+    public function permission()
+    {
+        return $this->belongsToMany('App\Models\Permission','permission_role','role_id','permission_id');
+    }
 }

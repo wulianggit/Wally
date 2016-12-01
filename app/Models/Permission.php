@@ -6,7 +6,7 @@ use Zizaco\Entrust\EntrustPermission;;
 
 class Permission extends EntrustPermission
 {
-    protected $fillable = ['name', 'display_name', 'description'];
+    protected $fillable = ['name', 'display_name', 'model', 'description'];
 
     /**
      * 统一保存在数据库中的权限名称为小写

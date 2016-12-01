@@ -34,6 +34,7 @@ return [
     'permission' => [
         'name'         => '权限',
         'display_name' => '名称',
+        'model'        => '模块',
         'description'  => '描述',
     ],
 
@@ -41,5 +42,13 @@ return [
         'name'         => '角色',
         'display_name' => '名称',
         'description'  => '描述',
+        'setAccess'    => '设置权限',
+    ],
+
+    'model' => [
+        'user'       => '用户管理',
+        'role'       => '角色管理',
+        'permission' => '权限管理',
+        'article'    => '文章管理',
     ],
 ];

@@ -27,13 +27,14 @@ class PermissionRequest extends Request
 
         $rule = [
             'display_name' => 'required',
+            'model'        => 'required',
             'description'  => 'required',
         ];
 
         if ($id) {
-            $rule['name'] = 'required|unique:permissions,name,'.$id;
+            $rule['name'] = 'required|unique:permissions,name,'.$id.',id,model,'.request('model');
         } else {
-            $rule['name'] = 'required|unique:permissions,name';
+            $rule['name'] = 'required|unique:permissions,name,null,id,model,'.request('model');
         }
 
         return $rule;
@@ -62,6 +63,7 @@ class PermissionRequest extends Request
         return [
             'name'         => trans('label.permission.name'),
             'display_name' => trans('label.permission.display_name'),
+            'model'        => trans('label.permission.model'),
             'description'  => trans('label.permission.description')
         ];
     }

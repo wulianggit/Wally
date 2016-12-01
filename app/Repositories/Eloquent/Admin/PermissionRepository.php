@@ -66,4 +66,24 @@ class PermissionRepository extends Repository
             'data'  => $permission,
         ];
     }
+
+    /**
+     * 将权限根据模块分组
+     * @return array
+     * @author wuliang
+     */
+    public function groupPermissionByModel()
+    {
+        $permissions = $this->model->get(['id','display_name','model'])->toArray();
+
+        foreach ($permissions as $key => $val)
+        {
+            $result[$val['model']][] = [
+                'id' => $val['id'],
+                'displayName' => $val['display_name']
+            ];
+        }
+
+        return $result;
+    }
 }
