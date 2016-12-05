@@ -12,12 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('frontend/home');
 });
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['namespace' => 'Frontend', 'prefix' => 'frontend'], function () {
+    Route::get('/home', 'HomeController@index');
+});
 
 Route::group(['namespace' => 'Admin','prefix' => 'admin', 'middleware' => ['auth']],
     function($router) {

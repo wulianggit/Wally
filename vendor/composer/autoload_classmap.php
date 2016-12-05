@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'AddModelToPermissionsTable' => $baseDir . '/database/migrations/2016_12_01_145450_add_model_to_permissions_table.php',
     'CreateArticleTagTable' => $baseDir . '/database/migrations/2016_10_24_152848_create_article_tag_table.php',
     'CreateArticlesTable' => $baseDir . '/database/migrations/2016_10_16_171450_create_articles_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_10_10_072211_create_categories_table.php',

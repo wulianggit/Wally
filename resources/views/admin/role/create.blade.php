@@ -5,6 +5,8 @@
 @section('content')
     <div class="clearfix"></div>
 
+    @inject('rolePresenter', 'App\Repositories\Presenter\Admin\RolePresenter')
+
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -58,22 +60,7 @@
                             </label>
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <div id="wrap">
-                                    @foreach($permissions as $key => $permission)
-                                        <div class="app">
-                                            <p>
-                                                <strong>{{ trans('label.model.'.$key) }}</strong>
-                                                <input type="checkbox" level="1" value="0">
-                                            </p>
-                                            <dl>
-                                                @foreach($permission as $val)
-                                                    <dt>
-                                                        <strong>{{ $val['displayName'] }}</strong>
-                                                        <input type="checkbox" name="permission[]" value="{{ $val['id'] }}">
-                                                    </dt>
-                                                @endforeach
-                                            </dl>
-                                        </div>
-                                    @endforeach
+                                    {!! $rolePresenter->handlePermission($permissions) !!}
                                 </div>
                             </div>
                         </div>
