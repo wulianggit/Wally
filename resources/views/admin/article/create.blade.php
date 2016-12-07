@@ -18,7 +18,7 @@
     <div class="clearfix"></div>
 
     @inject('catePresenter', 'App\Repositories\Presenter\Admin\CategoryPresenter')
-    @inject('labelPresenter', 'App\Repositories\Presenter\Admin\LabelPresenter')
+    @inject('tagPresenter', 'App\Repositories\Presenter\Admin\tagPresenter')
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -88,7 +88,7 @@
                             </label>
                             <div class="col-md-6 col-sm-8 col-xs-12">
                                 <select name="label[]" multiple="multiple" class="select2_label form-control" tabindex="-1" >
-                                    {!! $labelPresenter->labelSelectOption($labelList) !!}
+                                    {!! $tagPresenter->tagSelectOption($tagList) !!}
                                 </select>
                             </div>
                             @if ($errors->has('label'))

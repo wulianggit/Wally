@@ -29,10 +29,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="index.html" class="navbar-brand">
+                <a href="" class="navbar-brand">
                     <span class="brand-logo"></span>
             <span class="brand-text">
-              COLOR ADMIN
+              冷无缺
             </span>
                 </a>
             </div>
@@ -40,23 +40,22 @@
             <!-- begin navbar-collapse -->
             <div class="collapse navbar-collapse" id="header-navbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="javascript:;" data-toggle="dropdown">HOME <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index_transparent_header.html">Page with Transparent Header</a></li>
-                            <li><a href="index_inverse_header.html">Page with Inverse Header</a></li>
-                            <li><a href="index.html">Default Header</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="dropdown">POSTS <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="post_grid.html">Page with Grid View Blog Post</a></li>
-                            <li><a href="post_without_sidebar.html">Page without Sidebar</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about_me.html">ABOUT ME</a></li>
-                    <li><a href="contact_us.html">CONTACT US</a></li>
+                    @if($navs)
+                        @foreach($navs as $nav)
+                            @if(count($nav['child'])>0)
+                                <li class="dropdown">
+                                    <a href="javascript:;" data-toggle="dropdown">{{$nav['name']}} <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                            @foreach($nav['child'] as $child)
+                                                <li><a href="">{{$child['name']}}</a></li>
+                                            @endforeach
+                                    </ul>
+                                </li>
+                            @else
+                                <li><a href="about_me.html">{{$nav['name']}}</a></li>
+                            @endif
+                        @endforeach
+                    @endif
                 </ul>
             </div>
             <!-- end navbar-collapse -->

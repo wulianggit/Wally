@@ -74,7 +74,6 @@ class ArticleRepository extends Repository
         $fileName  = date('Y-m-d').uniqid('-').'.'.$extension;
 
         $result = Storage::disk('upload')->put($fileName, file_get_contents($realPath));
-
         if (!$result) {
             return '';
         }

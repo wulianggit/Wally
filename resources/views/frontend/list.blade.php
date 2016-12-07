@@ -23,6 +23,7 @@
             <div class="col-md-9">
                 <!-- begin post-list -->
                 <ul class="post-list">
+                    @foreach($articles as $article)
                     <li>
                         <!-- begin post-left-info -->
                         <div class="post-left-info">
@@ -39,21 +40,18 @@
                         <!-- begin post-content -->
                         <div class="post-content">
                             <div class="post-image">
-                                <a href="post_detail.html"><img src="{{asset('frontend/img/post1.jpg')}}" alt=""></a>
+                                <a href="post_detail.html"><img src="{{asset('uploads').'/'.$article['img_path']}}" alt=""></a>
                             </div>
                             <!-- begin post-info -->
                             <div class="post-info">
                                 <h4 class="post-title">
-                                    <a href="post_detail.html">Bootstrap Carousel Blog Post</a>
+                                    <a href="post_detail.html">{{$article['title']}}</a>
                                 </h4>
                                 <div class="post-by">
                                     Posted By <a href="#">admin</a> <span class="divider">|</span> <a href="#">Sports</a>, <a href="#">Mountain</a>, <a href="#">Bike</a> <span class="divider">|</span> 2 Comments
                                 </div>
                                 <div class="post-desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis elit dolor, elementum ut ligula ultricies,
-                                    aliquet eleifend risus. Vivamus ut auctor sapien. Morbi at nibh id lorem viverra commodo augue dui, in pellentesque odio tempor.
-                                    Etiam lobortis vel enim vitae facilisis. Suspendisse ac faucibus diam, non malesuada nisl. Maecenas vel aliquam eros, sit amet gravida lacus.
-                                    nteger dictum, nulla [...]
+                                    {{$article['introduce']}}
                                 </div>
                             </div>
                             <!-- end post-info -->
@@ -65,7 +63,7 @@
                         </div>
                         <!-- end post-content -->
                     </li>
-
+                    @endforeach
                 </ul>
                 <!-- end post-list -->
 

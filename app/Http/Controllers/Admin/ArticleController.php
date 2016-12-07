@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Repositories\Eloquent\Admin\ArticleRepository;
 use App\Repositories\Eloquent\Admin\CategoryRepository;
-use App\Repositories\Eloquent\Admin\LabelRepository;
+use App\Repositories\Eloquent\Admin\TagRepository;
 use App\Transform\ArticleTransform;
 use Illuminate\Http\Request;
 
@@ -25,9 +25,9 @@ class ArticleController extends Controller
     private $cateModel;
 
     /**
-     * @var \App\Repositories\Eloquent\Admin\LabelRepository
+     * @var \App\Repositories\Eloquent\Admin\TagRepository
      */
-    private $labelModel;
+    private $tagModel;
 
     /**
      * @var \App\Transform\ArticleTransform
@@ -39,19 +39,19 @@ class ArticleController extends Controller
      *
      * @param CategoryRepository $categoryRepository
      * @param ArticleRepository $articleRepository
-     * @param LabelRepository $labelRepository
+     * @param TagRepository $tagRepository
      * @param ArticleTransform $articleTransform
      */
     public function __construct(
         CategoryRepository $categoryRepository,
         ArticleRepository $articleRepository,
-        LabelRepository $labelRepository,
+        TagRepository $tagRepository,
         ArticleTransform $articleTransform
     )
     {
         $this->articleModel = $articleRepository;
         $this->cateModel    = $categoryRepository;
-        $this->labelModel   = $labelRepository;
+        $this->tagModel     = $tagRepository;
         $this->transform    = $articleTransform;
     }
 
@@ -73,8 +73,8 @@ class ArticleController extends Controller
     public function create()
     {
         $categoryList = $this->cateModel->getCateList();
-        $labelList    = $this->labelModel->getLabelList();
-        return view('admin.article.create')->with(compact('categoryList', 'labelList'));
+        $tagList    = $this->tagModel->getTagList();
+        return view('admin.article.create')->with(compact('categoryList', 'tagList'));
     }
 
     /**
