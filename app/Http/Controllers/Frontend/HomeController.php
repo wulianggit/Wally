@@ -31,7 +31,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $articles = $this->article->getAticlesList();
+        $articles = $this->article->getArticlesList();
         return view('frontend.list')->with(compact('articles'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     * @author wuliang
+     */
+    public function show($id)
+    {
+        $article = $this->article->getArticleContentById($id);
+        //dd($article);
+        return view('frontend.detail')->with(compact('article'));
     }
 }

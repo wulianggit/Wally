@@ -15,6 +15,8 @@
     <link href="{{asset('frontend/css/theme/default.css')}}" id="theme" rel="stylesheet" />
     <!-- ================== END BASE CSS STYLE ================== -->
 
+    @yield('css')
+
 </head>
 
 <body class="pace-done">
@@ -63,6 +65,18 @@
         <!-- end container -->
     </div>
     <!-- end #header -->
+
+    <!-- begin #page-title -->
+    <div id="page-title" class="page-title has-bg">
+        <div class="bg-cover">
+            <img src="{{asset('frontend/img/cover2.jpg')}}" alt="" />
+        </div>
+        <div class="container">
+            <p>Blog Concept Front End Page</p>
+            <h1>Official Color Admin Blog</h1>
+        </div>
+    </div>
+    <!-- end #page-title -->
 
     @yield('content')
 
